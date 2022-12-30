@@ -1,1 +1,41 @@
-<router-outlet></router-outlet>
+<div class="l-navbar {{isadmincolor}}" id="nav-bar">
+  <nav class="nav" *ngIf="!authenticated">
+    <div>
+      <a id="header-toggle" (click)="doslide()" class="nav_logo"> <i class='bx bx-menu nav_logo-icon'></i> <span
+          class="nav_logo-name"></span> </a>
+      <a routerLink="/home" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+          class="nav_logo-name">login</span> </a>
+      <div class="nav_list"> <a routerLink="/home" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
+          <span class="nav_name">A propos de nous</span> </a> <a routerLink="/home" class="nav_link"> <i
+            class='bx bx-user nav_icon'></i>
+          <span class="nav_name">Contactez nous</span> </a></div>
+    </div>
+  </nav>
+  <nav class="nav" *ngIf="authenticated">
+    <div>
+      <a id="header-toggle1" (click)="doslide1()" class="nav_logo"> <i class='bx bx-menu nav_logo-icon'></i> <span
+          class="nav_logo-name"></span> </a>
+      <a routerLink="/first" class="nav_logo"> <i class='bx bx-user nav_logo-icon'></i> <span
+          class="nav_logo-name">VIGNETTE 1.0</span> </a>
+      <div class="nav_list"> <a routerLink="/first" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
+          <span class="nav_name">Dashboard</span> </a> <a routerLink="/liste_bon" class="nav_link"> <i
+            class='bx bx-list-ol nav_icon'></i>
+          <span class="nav_name">Liste Bon</span> </a> <a routerLink="/liste_facture" *ngIf="role" class="nav_link"> <i
+            class='bx bx-receipt nav_icon'></i> <span class="nav_name">Liste facture</span> </a> <a
+          routerLink="/liste_relevet" class="nav_link" *ngIf="role"> <i class='bx bx-bookmark nav_icon'></i> <span
+            class="nav_name">Liste Relevet</span> </a> <a *ngIf="role" class="nav_link" routerLink="/liste_utilisateur">
+          <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Utilisateur</span> </a> <a href="#"
+          class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Contactez nous</span>
+        </a> </div>
+    </div>
+    <a  class="nav_link_timer"> <span id="timer_minutes">{{minutes_timer}}</span></a>
+    <a  class="nav_link_timer"> <span id="timer_seconds">{{secondes_timer}}</span></a>
+    <a (click)="signout()" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+        class="nav_name">SignOut</span>
+    </a>
+  </nav>
+</div>
+<div class="">
+  <router-outlet></router-outlet>
+  <notifier-container></notifier-container>
+</div>

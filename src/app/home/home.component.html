@@ -1,7 +1,34 @@
-<div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
-
-  <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
+<div class="container-fluid">
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Bienvenu Dans Vignette</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-4">
+            <div class="login-wrap p-0">
+              <h3 class="mb-4 text-center">Entrer Votre Compte</h3>
+              <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="animate__animated {{test}} signin-form">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="username" name="username"  placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                  <input id="password-field" type="password" formControlName="password" name="password"  class="form-control" placeholder="Password" required>
+                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>
+                <div class="form-group" >
+                  <button type="submit" [disabled]="!checkoutForm.valid" class="form-control btn btn-primary submit px-3">Sign In</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-danger alert-dismissible show-abc" *ngIf="correct">
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          <strong>SVP!</strong> Verifier l'utilisateur ou le Mot de passe .
+        </div>
+      </div>
+    </section>
 </div>

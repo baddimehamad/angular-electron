@@ -1,14 +1,99 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <title>Angular Electron</title>
+  <title>VIGNETTE DUP</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+  <link href="assets/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/animate.min.css" rel="stylesheet">
+  <link href="assets/boxicons.min.css" rel="stylesheet">
+  <script defer src="assets/appconfig.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/datatables.css"/>
+  <script src="assets/bootstrap.bundle.min.js"></script>
+  <script src="assets/jquery-3.4.1.min.js"></script>
+
+
+<script type="text/javascript" src="assets/datatables.js"></script>
+
+
 </head>
-<body>
-  <app-root>Loading...</app-root>
+
+<!--<body id="body-pd" style="background-image: url('./assets/bg2.jpg');">-->
+  <body id="body-pd">
+    <header class="header1" id="header">
+  </header>
+  <header class="header" >
+    <div id="minimizeApp" class="header_img"><img src="./assets/windows-reduce.svg" alt="minimize" /></div>
+    <div id="maximizeApp" class="header_img"><img src="./assets/maxi1.svg" alt="maximize" /></div>
+    <div id="closeBtn" class="header_img"><img src="./assets/window-close.svg" alt="close" /></div>
+</header>
+  <!--Container Main start-->
+    <app-root>Loading...</app-root>
+  <!--Container Main end-->
+  <script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+      const showNavbar = (toggleId, navId, bodyId, headerId) => {
+        const toggle = document.getElementById(toggleId),
+          nav = document.getElementById(navId),
+          bodypd = document.getElementById(bodyId),
+          headerpd = document.getElementById(headerId)
+
+        // Validate that all variables exist
+        if (toggle && nav && bodypd && headerpd) {
+          toggle.addEventListener('click', () => {
+            // show navbar
+            nav.classList.toggle('show')
+            // change icon
+            toggle.classList.toggle('bx-x')
+            // add padding to body
+            bodypd.classList.toggle('body-pd')
+            // add padding to header
+            headerpd.classList.toggle('body-pd')
+          })
+        }
+      }
+
+      //showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+      /*===== LINK ACTIVE =====*/
+      const linkColor = document.querySelectorAll('.nav_link')
+
+      function colorLink() {
+        if (linkColor) {
+          linkColor.forEach(l => l.classList.remove('active'))
+          this.classList.add('active')
+        }
+      }
+      linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+      // Your code to run since DOM is loaded and ready
+    });
+    function doslide(){
+        const toggle = document.getElementById('header-toggle'),
+          nav = document.getElementById('nav-bar'),
+          bodypd = document.getElementById('body-pd'),
+          headerpd = document.getElementById('header')
+
+        // Validate that all variables exist
+        if (toggle && nav && bodypd && headerpd) {
+          toggle.addEventListener('click', () => {
+            // show navbar
+            nav.classList.toggle('show')
+            // change icon
+            toggle.classList.toggle('bx-x')
+            // add padding to body
+            bodypd.classList.toggle('body-pd')
+            // add padding to header
+            headerpd.classList.toggle('body-pd')
+          })
+        }
+      }
+  </script>
 </body>
+
 </html>

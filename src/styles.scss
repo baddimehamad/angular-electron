@@ -1,50 +1,245 @@
-/* You can add global styles to this file, and also import other style files */
-html, body {
-  margin: 0;
-  padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+div.dataTables_wrapper div.dataTables_length select {
+  display: inline-block;
+  width: 100px !important;
+}
+.page-item.active .page-link {
+  background-color: lightgrey !important;
+  border: 1px solid black;
+}
+.page-link {
+  color: black !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+  color: white !important;
+  border: 1px solid transparent !important;
+  background-color: transparent !important;
+  background: linear-gradient(to bottom,transparent 0%, transparent 0%) !important;
+}
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #4723D9;
+  --first-color-light: #AFA5D9;
+  --white-color: #F7F6FB;
+  --body-font: 'Nunito', sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100
 }
 
-/* CAN (MUST) BE REMOVED ! Sample Global style */
-.container {
+*,
+::before,
+::after {
+  box-sizing: border-box
+}
+
+body {
+  position: relative;
+  margin: var(--header-height) 0 0 0;
+  padding: 0 1rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: .5s
+}
+
+a {
+  text-decoration: none
+}
+
+.header {
+  width:12%;
+  margin-top: -10%;
+  height: var(--header-height);
+  display: inline-block;
+  z-index: var(--z-fixed);
+  transition: .5s;
+  //background-color: aqua;
+  //-webkit-app-region:drag;
+}
+.header1 {
+  width: 84%;
+  margin-top: -10%;
+  height: var(--header-height);
+  display: inline-block;
+  z-index: var(--z-fixed);
+  transition: .5s;
+  //background-color: #4723D9;
+  margin-left: 3.6%;
+  -webkit-app-region:drag;
+}
+
+.header_toggle {
+  color: var(--first-color);
+  font-size: 1.5rem;
+  cursor: pointer
+}
+
+.header_img {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  float: right;
+  justify-content: center;
+  overflow: hidden
+}
+
+.header_img img {
+  width: 30px
+}
+
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: -30%;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--first-color);
+  padding: .5rem 1rem 0 0;
+  transition: .5s;
+  z-index: var(--z-fixed)
+}
+
+.nav {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background: url(./assets/background.jpg) no-repeat center fixed;
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover; /* version standardisée */
-
-  .title {
-    color: white;
-    margin: 0;
-    padding: 50px 20px;
-  }
-
-  a {
-    color: #fff !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #ed3330;
-    padding: 20px;
-    border-radius: 5px;
-    display: inline-block;
-    border: none;
-    transition: all 0.4s ease 0s;
-
-    &:hover {
-      background: #fff;
-      color: #ed3330 !important;
-      letter-spacing: 1px;
-      -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-      -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-      box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
-      transition: all 0.4s ease 0s;
-    }
-  }
+  justify-content: space-between;
+  overflow: hidden
 }
 
+.nav_logo,
+.nav_link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 1rem;
+  padding: .5rem 0 .5rem 1.5rem
+}
+.nav_link_timer {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 1rem;
+  padding: .5rem 0 .5rem 1rem
+}
+
+.nav_logo {
+  margin-bottom: 2rem
+}
+
+.nav_logo-icon {
+  font-size: 1.25rem;
+  color: var(--white-color)
+}
+
+.nav_logo-name {
+  color: var(--white-color);
+  font-weight: 700
+}
+
+.nav_link {
+  position: relative;
+  color: var(--first-color-light);
+  margin-bottom: 1.5rem;
+  transition: .3s
+}
+.nav_link_timer {
+  position: relative;
+  margin-bottom: -18rem;
+  color: var(--first-color-light);
+  transition: .3s
+}
+
+.nav_link:hover {
+  color: var(--white-color)
+}
+
+.nav_icon {
+  font-size: 1.25rem
+}
+
+.show {
+  left: 0
+}
+
+.show-abc {
+  left: 0
+}
+
+.body-pd {
+  padding-left: calc(var(--nav-width) + 1rem)
+}
+
+.active {
+  color: var(--white-color)
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 32px;
+  background-color: var(--white-color)
+}
+
+.height-100 {
+  height: 100vh
+}
+
+@media screen and (min-width: 768px) {
+  /*body {
+    //margin: calc(var(--header-height) + 1rem) 0 0 0;
+    //padding-left: calc(var(--nav-width) + 2rem)
+  }*/
+  .header {
+    width:12%;
+    margin-top: -10%;
+    height: calc(var(--header-height) + 1rem);
+    display: inline-block;
+    z-index: var(--z-fixed);
+    transition: .5s;
+    //background-color: lime;
+    //-webkit-app-region:drag;
+  }
+  .header1 {
+    width: 83%;
+    margin-top: -10%;
+    height: calc(var(--header-height) + 1rem);
+    padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+    display: inline-block;
+    z-index: var(--z-fixed);
+    transition: .5s;
+    margin-left: 3.6%;
+    //background-color: #4723D9;
+    -webkit-app-region:drag;
+  }
+
+  .header_img {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+  }
+
+  .header_img img {
+    width: 30px
+  }
+
+  .l-navbar {
+    left: 0;
+    padding: 1rem 1rem 0 0
+  }
+
+  .show {
+    width: calc(var(--nav-width) + 156px)
+  }
+
+  .show-abc {
+    width: auto
+  }
+
+  .body-pd {
+    padding-left: calc(var(--nav-width) + 160px)
+  }
+}

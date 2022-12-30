@@ -1,0 +1,174 @@
+<div class="container">
+  <h1 style="text-align: center;">Liste Facture</h1>
+  <center>  <button type="button" (click)="openPopup(12)" class="btn btn-outline-success">Cree Relevet</button></center>
+  <!--<button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>-->
+  <table class="table table-striped table-bordered  row-border hover display" id="datatableexample">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="th-sm">Num Facture
+        </th>
+        <th class="th-sm">Date Fcture
+        </th>
+        <th class="th-sm">Date Création
+        </th>
+        <th class="th-sm">Num Bon
+        </th>
+        <th class="th-sm">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bon of allbons">
+        <td><input type="checkbox" (change)="onChange($event)" value="{{ bon.refefact }}" /></td>
+        <td>{{ bon.refefact }}</td>
+        <td>{{ bon.date_facture | date:'dd/MM/yyyy' }}</td>
+        <td>{{ bon.date_transfer | date:'dd/MM/yyyy, h:mm a'}}</td>
+        <td>{{ bon.num_bon}}</td>
+        <td>
+          <button type="button" (click)="openPopupdevalide(bon.refefact)" [hidden]="bon.Dans_relevet" class="btn btn-outline-warning">Dévalider</button>
+          <button type="button" (click)="openPopuptxt(bon.refefact,bon.date_facture)" class="btn btn-outline-info">TXT</button>
+          <button type="button" (click)="openPopupexcel(bon.refefact,bon.date_facture)" class="btn btn-outline-success">Excel</button>
+          <!--<button type="button" (click)="downloadObjectAsJson()" class="btn btn-outline-danger">download</button>-->
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th class="th-sm">Num Facture
+        </th>
+        <th class="th-sm">Date Fcture
+        </th>
+        <th class="th-sm">Date Création
+        </th>
+        <th class="th-sm">Num Bon
+        </th>
+        <th class="th-sm">
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form [formGroup]="checkoutForm">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Creation relevet</h4>
+            <button type="button" class="close" (click)="closePopup()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="mb-3 mt-3">
+              <label for="num_facture" class="form-label">Numero relevet:</label>
+              <input type="text" formControlName="nume_facture" class="form-control" id="num_facture"
+                placeholder="Enter Numero relevet" name="num_facture">
+            </div>
+            <div class="mb-3">
+              <label for="date_facture" class="form-label">Date relevet:</label>
+              <input type="date" formControlName="date_facture" class="form-control" id="date_facture"
+                name="date_facture">
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" [disabled]="!checkoutForm.valid" (click)="relevete()">
+              Relevet
+            </button>
+            <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopup()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayStyletxt}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form >
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Fichier TXT </h4>
+            <button type="button" class="close" (click)="closePopuptxt()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            vous êtes sur que vous voulez Exporter ficher TXT de la facture:<strong> {{numero_facture}}</strong>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger"  (click)="downloadObjectAsJson()">
+              Exporter fichier TXT
+            </button>
+            <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopuptxt()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayStyleexcel}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form >
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Excel facture</h4>
+            <button type="button" class="close" (click)="closePopupexcel()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            vous êtes sur que vous voulez Exporter ficher Excel de la facture:<strong> {{numero_facture}}</strong>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger"  (click)="onUpload()">
+              Exporter Facture (excel)
+            </button>
+            <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopupexcel()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayStyledevalide}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form >
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Dévalider facture</h4>
+            <button type="button" class="close" (click)="closePopupdevalide()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            vous êtes sur que vous voulez Dévalider la facture numero :<strong> {{numero_facture}}</strong>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger"  (click)="devaliderfacture_button(numero_facture)">
+              Dévalider
+            </button>
+            <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopupdevalide()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

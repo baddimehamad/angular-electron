@@ -1,11 +1,11 @@
 {
-  "name": "angular-electron",
+  "name": "vignette-dup",
   "version": "10.5.2",
-  "description": "Angular 13 with Electron 18 (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "description": "Application vignette dup",
+  "homepage": "https://www.dup.sarl",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "BADDI MOHAMED",
+    "email": "mehamad199523@gmail.com"
   },
   "keywords": [
     "angular",
@@ -53,8 +53,26 @@
     "@angular/platform-browser": "13.3.1",
     "@angular/platform-browser-dynamic": "13.3.1",
     "@angular/router": "13.3.1",
+    "angular-barcode": "2.0.1",
+    "angular-datatables": "6.0.0",
+    "angular-notifier": "11.0.0",
+    "angular-toastify": "1.0.4",
+    "animate.css": "4.1.1",
+    "crypto-js": "4.1.1",
+    "datatables.net": "1.12.1",
+    "datatables.net-bs5": "^1.11.3",
+    "datatables.net-dt": "1.12.1",
+    "exceljs": "4.3.0",
+    "file-saver": "2.0.5",
+    "fs-web": "1.0.1",
+    "jquery": "3.6.0",
+    "jsbarcode": "3.11.5",
+    "jspdf": "2.5.1",
     "rxjs": "7.5.5",
+    "to-words": "3.2.0",
     "tslib": "^2.1.0",
+    "xlsx": "0.18.5",
+    "xlsx-import": "2.4.4",
     "zone.js": "~0.11.5"
   },
   "devDependencies": {
@@ -70,8 +88,12 @@
     "@ngx-translate/core": "14.0.0",
     "@ngx-translate/http-loader": "7.0.0",
     "@playwright/test": "1.20.2",
+    "@types/crypto-js": "4.1.1",
+    "@types/datatables.net": "1.10.23",
+    "@types/file-saver": "2.0.5",
     "@types/jasmine": "3.10.3",
     "@types/jasminewd2": "2.0.10",
+    "@types/jquery": "3.5.14",
     "@types/node": "17.0.23",
     "@typescript-eslint/eslint-plugin": "5.17.0",
     "@typescript-eslint/parser": "5.17.0",
@@ -79,6 +101,7 @@
     "electron": "18.0.1",
     "electron-builder": "22.14.13",
     "electron-debug": "3.2.0",
+    "electron-packager": "16.0.0",
     "electron-reloader": "1.2.3",
     "eslint": "8.12.0",
     "eslint-plugin-import": "2.25.4",
@@ -101,6 +124,11 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   },
   "browserslist": [
     "chrome 100"

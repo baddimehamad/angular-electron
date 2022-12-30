@@ -1,0 +1,149 @@
+<div class="container">
+  <h1 style="text-align: center;">Liste bon <strong>Non facturé</strong></h1>
+  <center>  <button type="button" (click)="openPopup_facture()" class="btn btn-outline-success">Cree facture</button>
+    <!--<button type="button" (click)="showNotification()" class="btn btn-outline-success">notification</button>-->
+    </center>
+  <table class="table table-striped table-bordered  row-border hover display" id="datatableexample">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="th-sm">ID
+        </th>
+        <th class="th-sm">Num Bon
+        </th>
+        <th class="th-sm">Matricule
+        </th>
+        <th class="th-sm">Produit
+        </th>
+        <th class="th-sm">Date Bon
+        </th>
+        <th class="th-sm">Quantité
+        </th>
+        <th class="th-sm">Prix
+        </th>
+        <th class="th-sm">Total brut
+        </th>
+        <th>Montant Vignette
+        </th>
+        <th class="th-sm">Kilometrage
+        </th>
+        <th class="th-sm">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bon of allbons" [ngStyle]="{'background-color':bon.is_numprod_valid?'':'#f7bbb7'}">
+        <td><input type="checkbox"  (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!='100')"
+            value="{{ bon.id }}" /></td>
+        <td>{{ bon.id }}</td>
+        <td>{{ bon.codalfbo }}{{ bon.nume_bon }}</td>
+        <td>{{ bon.numeimma }}</td>
+        <td>{{ bon.numeprod }}</td>
+        <td>{{bon.date_bon}}</td>
+        <td>{{ bon.quantite }} L.</td>
+        <td>{{ bon.prixunit }}</td>
+        <td>{{ bon.total_brut }}</td>
+        <td>{{ bon.montvign }}</td>
+        <td>{{ bon.kilometr }}</td>
+        <td><button type="button" (click)="updatevignette(bon.id)" class="btn btn-outline-warning">Modifier</button>
+          <button type="button" (click)="openPopup(bon.id)" class="btn btn-outline-danger">Supprimer</button>
+          <!--<button type="button" (click)="downloadObjectAsJson()" class="btn btn-outline-danger">download</button>-->
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th class="th-sm">ID
+        </th>
+        <th class="th-sm">Num Bon
+        </th>
+        <th class="th-sm">Matricule
+        </th>
+        <th class="th-sm">Produit
+        </th>
+        <th class="th-sm">Date Bon
+        </th>
+        <th class="th-sm">Quantité
+        </th>
+        <th class="th-sm">Prix
+        </th>
+        <th class="th-sm">Total brut
+        </th>
+        <th class="th-sm">Montant Vignette
+        </th>
+        <th class="th-sm">Kilometrage
+        </th>
+        <th class="th-sm">
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Information !</h4>
+          <button type="button" class="close" (click)="closePopup()">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          vous êtes sur que vous voulez supprimer le Bon Numero <strong>{{id_delete}}</strong>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deletevignette_button()">
+            Supprimer
+          </button>
+          <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopup()">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayStyle1}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form [formGroup]="checkoutForm">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Creation facture</h4>
+            <button type="button" class="close" (click)="closePopup()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="mb-3 mt-3">
+              <label for="num_facture" class="form-label">Numero facture:</label>
+              <input type="text" formControlName="nume_facture" class="form-control" id="num_facture"
+                placeholder="Enter Numero facture" name="num_facture">
+            </div>
+            <div class="mb-3">
+              <label for="date_facture" class="form-label">Date facture:</label>
+              <input type="date" formControlName="date_facture" class="form-control" id="date_facture"
+                name="date_facture">
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" [disabled]="!checkoutForm.valid" (click)="facturee()">
+              Facturé
+            </button>
+            <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopup()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

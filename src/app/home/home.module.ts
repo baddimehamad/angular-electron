@@ -5,9 +5,11 @@ import { HomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormGroup, FormControl,ReactiveFormsModule } from '@angular/forms';
+import 'animate.css';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, SharedModule, HomeRoutingModule]
+  imports: [CommonModule, SharedModule, HomeRoutingModule,ReactiveFormsModule]
 })
 export class HomeModule {}

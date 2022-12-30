@@ -1,0 +1,231 @@
+<div class="container">
+  <h1 style="text-align: center;">Liste Utilisateur</h1>
+  <center>  <button type="button" (click)="openPopup_utilisateur()" class="btn btn-outline-success">Cree Utilisateur</button></center>
+  <table class="table table-striped table-bordered  row-border hover display" id="datatableexample">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="th-sm">ID
+        </th>
+        <th class="th-sm">Nom
+        </th>
+        <th class="th-sm">Prenom
+        </th>
+        <th class="th-sm">email
+        </th>
+        <th class="th-sm">role
+        </th>
+        <th class="th-sm">Active
+        </th>
+        <th class="th-sm">Username
+        </th>
+        <th class="th-sm">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of allusers">
+        <td><input type="checkbox" (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!='100')"
+            value="{{ user.id }}" /></td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.nom}}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.active }}</td>
+        <td>{{ user.username }}</td>
+        <td><button type="button" (click)="openPopup_update(user.id)" class="btn btn-outline-warning">Modifier</button>
+          <button type="button" (click)="openPopup(user.id,user.nom,user.prenom)" class="btn btn-outline-danger">Supprimer</button>
+          <!--<button type="button" (click)="downloadObjectAsJson()" class="btn btn-outline-danger">download</button>-->
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th class="th-sm">ID
+        </th>
+        <th class="th-sm">Nom
+        </th>
+        <th class="th-sm">Prenom
+        </th>
+        <th class="th-sm">email
+        </th>
+        <th class="th-sm">role
+        </th>
+        <th class="th-sm">Active
+        </th>
+        <th class="th-sm">Username
+        </th>
+        <th class="th-sm">
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Information !</h4>
+          <button type="button" class="close" (click)="closePopup()">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          vous êtes sur que vous voulez supprimer le Utilisateur:  <strong>{{user_nom}} {{user_prenom}}</strong>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deletevignette_button()">
+            Supprimer
+          </button>
+          <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopup()">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayStyle2}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form [formGroup]="checkoutFormadd">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Creation Utilisateur</h4>
+            <button type="button" class="close" (click)="closePopup_utilisateur()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="mb-3 mt-3">
+              <label for="add_nom" class="form-label">Nom:</label>
+              <input type="text" formControlName="nom" class="form-control" id="add_nom"
+                placeholder="Enter Nom Utilisateur" name="add_nom">
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="add_prenom" class="form-label">Prenom:</label>
+              <input type="text" formControlName="prenom" class="form-control" id="add_prenom"
+                placeholder="Enter Prenom" name="add_prenom">
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="add_email" class="form-label">Email:</label>
+              <input type="email" formControlName="email" class="form-control" id="add_email"
+                placeholder="Enter Email" name="add_email">
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="add_role" class="form-label">Role:</label>
+                <select formControlName="role" class="form-control select_input input_text_text" id="add_role" name="add_role">
+                  <option [ngValue]="null" disabled>selectionner un Role</option>
+                  <option  [ngValue]="1">Administrateur</option>
+                  <option  [ngValue]="2">Utilisateur</option>
+                </select>
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="add_active" class="form-label">Active:</label>
+              <input type="text" formControlName="active" class="form-control" id="add_active"
+                placeholder="Enter le Active" name="add_active">
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="add_pseudo" class="form-label">Utilisateur:</label>
+              <input type="text" formControlName="pseudo" class="form-control" id="add_pseudo"
+                placeholder="Enter pseudo" name="add_pseudo">
+            </div>
+            <div class="mb-3">
+              <label for="add_password" class="form-label">Mot de passe:</label>
+              <input type="password" formControlName="password" class="form-control" id="add_password"
+                name="add_password">
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" [disabled]="!checkoutFormadd.valid" (click)="cree_utilisateur()">
+              Crée Utilsiateur
+            </button>
+            <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopup_utilisateur()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal animate__animated {{modal_var}}" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayStyle1}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form [formGroup]="checkoutFormupdate">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Modification Utilisateur</h4>
+            <button type="button" class="close" (click)="closePopup_update()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="mb-3 mt-3">
+              <label for="update_nom" class="form-label">Nom:</label>
+              <input type="text" formControlName="nom" value='' class="form-control" id="update_nom"
+                placeholder="Enter Nom Utilisateur" name="update_nom">
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="update_prenom" class="form-label">Prenom:</label>
+              <input type="text" formControlName="prenom" class="form-control" id="update_prenom"
+                placeholder="Enter Prenom" name="update_prenom">
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="update_email" class="form-label">Email:</label>
+              <input type="email" formControlName="email" class="form-control" id="update_email"
+                placeholder="Enter Email" name="update_email">
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="update_role" class="form-label">Role:</label>
+              <select formControlName="role" class="form-control select_input input_text_text" id="update_role" name="update_role">
+                <option [ngValue]="null" disabled>selectionner une role</option>
+                <option *ngFor="let role of allroles" [ngValue]="role.id">
+                {{ role.nom_role }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="update_active" class="form-label">Active:</label>
+              <input type="text" formControlName="active" class="form-control" id="update_active"
+                placeholder="Enter le Active" name="update_active">
+
+              <select formControlName="active" class="form-control select_input input_text_text" id="update_active" name="update_active">
+                <option [ngValue]="null" disabled>selectionner une active</option>
+                <option *ngFor="let role of allactives" [ngValue]="role.id">
+                {{ role.nom_active }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="update_pseudo" class="form-label">Utilisateur:</label>
+              <input type="text" formControlName="pseudo" class="form-control" id="update_pseudo"
+                placeholder="Enter pseudo" name="update_pseudo">
+            </div>
+            <div class="mb-3">
+              <label for="update_password" class="form-label">Mot de passe:</label>
+              <input type="password" formControlName="password" class="form-control" id="update_password"
+                name="update_password">
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" [disabled]="!checkoutFormupdate.valid" (click)="facturee()">
+              Modifier
+            </button>
+            <button type="button" class="btn btn-success animate__animated {{deletenone}}" (click)="closePopup_update()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

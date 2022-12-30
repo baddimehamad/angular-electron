@@ -3,6 +3,12 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "",
+    "paths": {
+      "fs": ["./node_modules/fs-web"],
+      "exceljs": [
+        "node_modules/exceljs/dist/exceljs.min.js"
+      ]
+   },
     "types": [
       "node"
     ]
