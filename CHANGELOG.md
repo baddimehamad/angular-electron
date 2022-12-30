@@ -1,5 +1,32 @@
+## 11.2.0 (2022-10-16)
+
+* misc/ Upgrade to Electron 21 ([ed23e89](https://github.com/maximegris/angular-electron/commit/ed23e89))
+
+
+
+## 11.1.0 (2022-08-12)
+
+* [Bumped Version] 11.1.0 ([a3eeb6a](https://github.com/maximegris/angular-electron/commit/a3eeb6a))
+* Bump actions/cache from 2 to 3 ([85b8624](https://github.com/maximegris/angular-electron/commit/85b8624))
+* Bump actions/checkout from 2 to 3 ([0650214](https://github.com/maximegris/angular-electron/commit/0650214))
+* Bump actions/setup-node from 1 to 3 ([f9a55b6](https://github.com/maximegris/angular-electron/commit/f9a55b6))
+* refactor/ build electron archive as asar ([e1da5b5](https://github.com/maximegris/angular-electron/commit/e1da5b5))
+* refactor/ replace deprecated url.format with URL WHATWG API ([c491c48](https://github.com/maximegris/angular-electron/commit/c491c48))
+
+
+
+## 11.0.0 (2022-07-20)
+
+* [Bumped Version] 11.0.0 ([91a8574](https://github.com/maximegris/angular-electron/commit/91a8574))
+* misc/ Upgrade to Angular 14 & Electron 19 ([dbacec7](https://github.com/maximegris/angular-electron/commit/dbacec7))
+* chore: Included githubactions in the dependabot config ([36f2a66](https://github.com/maximegris/angular-electron/commit/36f2a66))
+* chore: Set permissions for GitHub actions ([ca54dda](https://github.com/maximegris/angular-electron/commit/ca54dda))
+
+
+
 ## <small>10.5.2 (2022-04-23)</small>
 
+* [Bumped Version] 10.5.2 ([c26be0a](https://github.com/maximegris/angular-electron/commit/c26be0a))
 * Bump plist from 3.0.4 to 3.0.5 ([bedaba3](https://github.com/maximegris/angular-electron/commit/bedaba3))
 * fix/ macos action ([f1d89b1](https://github.com/maximegris/angular-electron/commit/f1d89b1))
 * misc/ add electron-reloader ([c885a24](https://github.com/maximegris/angular-electron/commit/c885a24))
@@ -33,11 +60,16 @@
 
 ## <small>10.4.1 (2021-11-17)</small>
 
-* [Bumped Version] 10.4.0 ([7a4f527](https://github.com/maximegris/angular-electron/commit/7a4f527))
 * [Bumped Version] 10.4.1 ([c5096fa](https://github.com/maximegris/angular-electron/commit/c5096fa))
 * misc/ Upgrade eslint version ([4321d9d](https://github.com/maximegris/angular-electron/commit/4321d9d))
-* misc/ upgrade to Angular 12.2.13 ([74df637](https://github.com/maximegris/angular-electron/commit/74df637))
 * misc/ Upgrade to Angular 13.0.0 ([99e9f35](https://github.com/maximegris/angular-electron/commit/99e9f35))
+
+
+
+## 10.4.0 (2021-11-17)
+
+* [Bumped Version] 10.4.0 ([7a4f527](https://github.com/maximegris/angular-electron/commit/7a4f527))
+* misc/ upgrade to Angular 12.2.13 ([74df637](https://github.com/maximegris/angular-electron/commit/74df637))
 * misc/ upgrade to Electron 16 ([65d285c](https://github.com/maximegris/angular-electron/commit/65d285c))
 * misc/ upgrade wait-on dependency ([e427f26](https://github.com/maximegris/angular-electron/commit/e427f26))
 

@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 import { app, BrowserWindow, screen, ipcMain } from 'electron';
+=======
+import {app, BrowserWindow, screen} from 'electron';
+>>>>>>> 584995312f59d033611fde7839f6739512c572d3
 import * as path from 'path';
 import * as fs from 'fs';
-import * as url from 'url';
 
 const ipc = ipcMain;
 let win: BrowserWindow = null;
@@ -10,8 +13,7 @@ const args = process.argv.slice(1),
 
 function createWindow(): BrowserWindow {
 
-  const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const size = screen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -24,7 +26,7 @@ function createWindow(): BrowserWindow {
     frame: false,
     webPreferences: {
       nodeIntegration: true,
-      allowRunningInsecureContent: (serve) ? true : false,
+      allowRunningInsecureContent: (serve),
       contextIsolation: false,  // false if you want to run e2e test with Spectron
     },
   });
@@ -44,11 +46,8 @@ function createWindow(): BrowserWindow {
       pathIndex = '../dist/index.html';
     }
 
-    win.loadURL(url.format({
-      pathname: path.join(__dirname, pathIndex),
-      protocol: 'file:',
-      slashes: true
-    }));
+    const url = new URL(path.join('file:', __dirname, pathIndex));
+    win.loadURL(url.href);
   }
   ipc.on('closeApp', () => {
     win.close();
